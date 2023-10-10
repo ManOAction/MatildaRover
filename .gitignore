@@ -3,7 +3,6 @@ c_cpp_properties.json
 settings.json
 
 src/*/test/
-install/
 .vscode/
 log/
 devel/

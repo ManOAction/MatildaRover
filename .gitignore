@@ -2,6 +2,7 @@
 c_cpp_properties.json
 settings.json
 
+tests_hardware/venv
 install/
 src/*/test/
 .vscode/

@@ -18,6 +18,9 @@ setup(
     license="TODO: License declaration",
     tests_require=["pytest"],
     entry_points={
-        "console_scripts": ["sample_node = sample_package.sample_node:main"],
+        "console_scripts": [
+            "sample_node = sample_package.sample_node:main",
+            "sample_service = sample_package.sample_service:main",
+        ]
     },
 )

@@ -19,8 +19,8 @@ setup(
     tests_require=["pytest"],
     entry_points={
         "console_scripts": [
-            "publisher_test = matilda_sensors.publisher_test_function:main",
-            "subscriber_test = matilda_sensors.subscriber_test_function:main",
+            "sensor_publisher = matilda_sensors.matilda_sensor_publisher:main",
+            "sensor_subscriber = matilda_sensors.matilda_sensor_subscriber:main",
         ],
     },
 )

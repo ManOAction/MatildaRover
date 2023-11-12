@@ -20,7 +20,9 @@ setup(
     entry_points={
         "console_scripts": [
             "sample_node = sample_package.sample_node:main",
-            "sample_service = sample_package.sample_service:main",
+            "sample_node2 = sample_package.sample_node2:main",
+            "sample_service_server = sample_package.sample_service_server:main",
+            "sample_service_client = sample_package.sample_service_client:main",
         ]
     },
 )

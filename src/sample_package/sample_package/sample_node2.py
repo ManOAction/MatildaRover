@@ -3,15 +3,15 @@ import rclpy
 from rclpy.node import Node
 
 
-class SampleServiceNode(Node):  # MODIFY NAME
+class MyCustomNode(Node):  # MODIFY NAME
     def __init__(self):
-        super().__init__("sample_service")  # MODIFY NAME
-        self.get_logger().info("Sample Service Class Instantiated")
+        super().__init__("node_name")  # MODIFY NAME
+        self.get_logger().info("Sample Node Message")
 
 
 def main(args=None):
     rclpy.init(args=args)
-    node = SampleServiceNode()  # MODIFY NAME
+    node = MyCustomNode()  # MODIFY NAME
     rclpy.spin(node)
     rclpy.shutdown()
 

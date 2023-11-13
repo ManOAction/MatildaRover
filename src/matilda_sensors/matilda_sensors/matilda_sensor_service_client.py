@@ -18,7 +18,7 @@ q to quit the interface
 
 #############
 """
-MenuTranslation = {"t": "Si7021", "o": "9-DOF" "b": "BadRequest"}
+MenuTranslation = {"t": "Si7021", "o": "9-DOF", "b": "BadRequest"}
 
 
 class MatildaSensorServiceClient(Node):

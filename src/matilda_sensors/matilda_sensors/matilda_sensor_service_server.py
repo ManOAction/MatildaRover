@@ -28,16 +28,17 @@ class MatildaSensorServiceNode(Node):
     def callback_sensor_read(self, request, response):
         if request.sensor == "Si7021":
             response.sensor_response = self.Si7021Reading()
+            return response
 
         if request.sensor == "9-DOF":
             response.sensor_response = self.NineDOFReading()
+            return response
 
         else:
             msg = f"Unkown Sensor Request"
             self.get_logger().info(msg)
             response.sensor_response = msg
-
-        return response
+            return response
 
     def Si7021Reading(self):
         self.get_logger().info("Responding to Si7021 Request")

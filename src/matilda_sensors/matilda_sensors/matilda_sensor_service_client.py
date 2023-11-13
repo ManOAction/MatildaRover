@@ -32,6 +32,9 @@ class MatildaSensorServiceClient(Node):
             if selection in MenuTranslation:
                 self.call_sensor_service(MenuTranslation[selection])
 
+            else:
+                print("Invalid Selection")
+
     def call_sensor_service(self, sensor):
         # Creating the service client
         client = self.create_client(SensorMeasurement, "matilda_sensor_service")

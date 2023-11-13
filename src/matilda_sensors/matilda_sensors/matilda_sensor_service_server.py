@@ -6,10 +6,15 @@ from matilda_interfaces.srv import SensorMeasurement
 
 import board
 from busio import I2C
-from adafruit_si7021 import SI7021
+
+from adafruit_fxos8700 import FXOS8700  # accelo / magnetometer
+from adafruit_fxas21002c import FXAS21002C  # gyro
+from adafruit_si7021 import SI7021  # temp and humidiy
 
 i2c = I2C(board.SCL, board.SDA)
 AtmoSensor = SI7021(i2c)
+Magnetometer = FXOS8700(i2c)
+Gyro_Accel = FXAS21002C(i2c)
 
 
 class MatildaSensorServiceNode(Node):
@@ -22,15 +27,17 @@ class MatildaSensorServiceNode(Node):
 
     def callback_sensor_read(self, request, response):
         if request.sensor == "Si7021":
-            response.sensor_response  = self.Si7021Reading()
-            return response
+            response.sensor_response = self.Si7021Reading()
+
+        if request.sensor == "9-DOF":
+            response.sensor_response = self.NineDOFReading()
 
         else:
             msg = f"Unkown Sensor Request"
             self.get_logger().info(msg)
             response.sensor_response = msg
-            return response
 
+        return response
 
     def Si7021Reading(self):
         self.get_logger().info("Responding to Si7021 Request")
@@ -38,6 +45,20 @@ class MatildaSensorServiceNode(Node):
         humidity = AtmoSensor.relative_humidity
 
         msg = f"The Temperature: {temperature_f:.1f} F and The Humidity: {humidity:.1f} %"
+        self.get_logger().info(msg)
+
+        return msg
+
+    def NineDOFReading(self):
+        self.get_logger().info("Responding to fxos8700 and fxas21002c 9-DOF Request")
+
+        mag_x, mag_y, mag_z = Magnetometer.magnetometer
+        gyro_x, gyro_y, gyro_z = Gyro_Accel.gyroscope
+
+        msg = f"""
+        Results of magnetometer call: {mag_x}, {mag_y}, {mag_z}
+        Results of gyroscope call: {gyro_x}, {gyro_y}, {gyro_z}
+        """
         self.get_logger().info(msg)
 
         return msg

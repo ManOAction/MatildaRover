@@ -10,7 +10,9 @@ find_package(ament_cmake REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
-"msg/Si7021.msg"
+"msg/Si7021Reading.msg"
+"srv/Si7021Reader.srv"
+"srv/SensorMeasurement.srv"
 )
 
 ament_export_dependencies(rosidl_default_runtime)

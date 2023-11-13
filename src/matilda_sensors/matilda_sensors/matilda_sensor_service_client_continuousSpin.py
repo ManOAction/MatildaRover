@@ -7,15 +7,13 @@ from matilda_interfaces.srv import SensorMeasurement
 
 
 MenuOptions = """
-#############
-Matilda Sensor Service Client Menu
+    #############
+    Matilda Sensor Service Client Menu
 
-t for Temperature Reading
-b for a Bad Request
+    t for Temperature Reading
+    b for a Bad Request
 
-q to quit the interface
-
-#############
+    #############
 """
 MenuTranslation = {"t": "Si7021", "b": "BadRequest"}
 
@@ -24,6 +22,18 @@ class MatildaSensorServiceClient(Node):
     def __init__(self):
         super().__init__("matilda_sensor_service_client")
         self.get_logger().info("Matilda Sensor Service Client started.")
+        self.sensor_menu()
+
+    def sensor_menu(self):
+        print(MenuOptions)
+        selection = input("Select a sensor: ")
+
+        if selection in MenuTranslation:
+            print(f"Making call to Sensor: {MenuTranslation[selection]}")
+            self.call_sensor_service(MenuTranslation[selection])
+
+        else:
+            print("Invalid Selection")
 
     def call_sensor_service(self, sensor):
         # Creating the service client
@@ -37,15 +47,22 @@ class MatildaSensorServiceClient(Node):
         request = SensorMeasurement.Request()
         request.sensor = sensor  # Setting the request instance with the sensor name
 
+        print("Request Package Info:")
+        print(request)
+        print(request.sensor)
 
         future = client.call_async(request)
-        rclpy.spin_until_future_complete(self, future)
+        future.add_done_callback(partial(self.callback_call_sensor_service, sensor=sensor))
 
+    def callback_call_sensor_service(self, future, sensor):
+        print("Inside Callback Loop")
+        print(future)
+        print(sensor)
+        print(future.result())
         try:
             response = future.result()
             print("Server Responded:")
             print(f"{response.sensor_response}")
-            input("Press Enter to Return to Menu: ")
 
         except Exception as e:
             self.get_logger().error(f"Service call failed: {e}")
@@ -53,22 +70,8 @@ class MatildaSensorServiceClient(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    MatildaSensorClient = MatildaSensorServiceClient()
-
-    while True:
-        print(MenuOptions)
-        selection = input("Select a sensor: ")
-
-        if selection == 'q':
-            break
-
-        if selection in MenuTranslation:
-            print(f"\n \nMaking call to Sensor: {MenuTranslation[selection]}")
-            MatildaSensorClient.call_sensor_service(MenuTranslation[selection])
-
-        else:
-            print("Invalid Selection")
-
+    node = MatildaSensorServiceClient()
+    rclpy.spin(node)
     rclpy.shutdown()
 
 

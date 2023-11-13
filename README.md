@@ -1,5 +1,8 @@
 ## Matilda Rover Project
 
+# TODOS
+- Abstract GPIO pins into a config file.
+
 # Dependency Notes
 We're using Adafruit's Blinka library pretty extensively.
 https://github.com/adafruit/Adafruit_Blinka

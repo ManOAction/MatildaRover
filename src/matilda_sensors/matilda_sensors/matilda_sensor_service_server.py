@@ -22,19 +22,22 @@ class MatildaSensorServiceNode(Node):
 
     def callback_sensor_read(self, request, response):
         if request.sensor == "Si7021":
-            response = self.Si7021Reading()
+            response.sensor_response  = self.Si7021Reading()
+            return response
 
         else:
-            response = "Unknown Sensor Request"
+            msg = f"Unkown Sensor Request"
+            self.get_logger().info(msg)
+            response.sensor_response = msg
+            return response
 
-        return response
 
     def Si7021Reading(self):
         self.get_logger().info("Responding to Si7021 Request")
         temperature_f = AtmoSensor.temperature * (9 / 5) + 32
         humidity = AtmoSensor.relative_humidity
 
-        msg = f"The Temperature: {temperature_f:.1f} F \n The Humidity: {humidity:.1f} %"
+        msg = f"The Temperature: {temperature_f:.1f} F and The Humidity: {humidity:.1f} %"
         self.get_logger().info(msg)
 
         return msg

@@ -25,11 +25,12 @@ class MatildaSensorServiceClient(Node):
         self.sensor_menu()
 
     def sensor_menu(self):
-        print(MenuOptions)
-        selection = input("Select a sensor: ")
+        while True:
+            print(MenuOptions)
+            selection = input("Select a sensor: ")
 
-        if selection in MenuTranslation:
-            self.call_sensor_service(MenuTranslation[selection])
+            if selection in MenuTranslation:
+                self.call_sensor_service(MenuTranslation[selection])
 
     def call_sensor_service(self, sensor):
         # Creating the service client

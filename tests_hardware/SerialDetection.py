@@ -14,9 +14,13 @@ def find_arduino_port():
 
     ports = list(serial.tools.list_ports.comports())
     for port in ports:
-        if port.vid == int(arduino_vendor_id, 16) and port.pid == int(
-            arduino_product_id, 16
-        ):
+        print(port)
+        print(port.vid)
+        print(port.pid)
+        print(port.name)
+        print(port.manufacturer)
+        print(port.product)
+        if port.vid == int(arduino_vendor_id, 16) and port.pid == int(arduino_product_id, 16):
             return port.device
 
     return None

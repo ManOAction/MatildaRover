@@ -11,5 +11,6 @@ void loop()
         char incomingByte = Serial.read();
         // send the byte back:
         Serial.write(incomingByte);
+        Serial.write('\n');
     }
 }

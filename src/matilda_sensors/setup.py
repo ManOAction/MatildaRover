@@ -23,6 +23,8 @@ setup(
             "sensor_subscriber = matilda_sensors.matilda_sensor_subscriber:main",
             "matilda_sensor_server = matilda_sensors.matilda_sensor_service_server:main",
             "matilda_sensor_client = matilda_sensors.matilda_sensor_service_client:main",
+            "subscriber_test = matilda_sensors.subscriber_test_function:main",
+            "publisher_test = matilda_sensors.publisher_test_function:main",
         ],
     },
 )

@@ -2,6 +2,7 @@
 
 ## TODOS
 - Abstract GPIO pins into a config file.
+- Build the launch file / bringup file/package
 
 ## Dependency Notes
 We're using Adafruit's Blinka library pretty extensively.

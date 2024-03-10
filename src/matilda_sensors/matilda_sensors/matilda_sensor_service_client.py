@@ -13,12 +13,13 @@ Matilda Sensor Service Client Menu
 t for Temperature Reading
 o for 9-DOF Reading
 b for a Bad Request
+m for Motor Test (careful!)
 
 q to quit the interface
 
 #############
 """
-MenuTranslation = {"t": "Si7021", "o": "9-DOF", "b": "BadRequest"}
+MenuTranslation = {"t": "Si7021", "o": "9-DOF", "m" : "MotorTest", "b": "BadRequest"}
 
 
 class MatildaSensorServiceClient(Node):

@@ -7,7 +7,6 @@ settings.json
 
 tests_hardware/venv
 install/
-src/*/test/
 .vscode/
 log/
 devel/

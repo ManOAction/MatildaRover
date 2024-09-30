@@ -1,0 +1,3 @@
+string sensor # sensor name
+---
+string sensor_response # sensor response

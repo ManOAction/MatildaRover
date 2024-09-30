@@ -16,4 +16,4 @@ def generate_launch_description():
         output='screen'
     )
 
-    return LaunchDescription([node1])
+    return LaunchDescription([node1, node2])

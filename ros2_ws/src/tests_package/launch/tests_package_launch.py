@@ -4,8 +4,8 @@ from launch_ros.actions import Node
 def generate_launch_description():
     node1 = Node(
         package='tests_package',
-        executable='publisher_test_function',
-        name='pub_test',
+        executable='pub_test',
+        name='publisher_test',
         output='screen'
     )
 

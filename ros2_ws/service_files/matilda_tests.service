@@ -1,0 +1,29 @@
+[Unit]
+Description=Matilda Tests Package Services
+After=network.target
+
+[Service]
+# Specify the command to execute
+ExecStart=/usr/bin/bash -c 'source /opt/ros/jazzy/setup.bash && source /home/ubuntu/MatildaRover/ros2_ws/install/setup.bash && ros2 launch tests_package tests_package_launch.py'
+
+# Restart the service on failure
+Restart=on-failure
+RestartSec=5
+
+# Use your user account
+User=ubuntu
+Group=ubuntu
+
+# Set the working directory
+WorkingDirectory=/home/ubuntu/MatildaRover/ros2_ws/
+
+# Standard output and error logging
+StandardOutput=append:/home/ubuntu/MatildaRover/ros2_ws/logs/tests_package.log
+StandardError=append:/home/ubuntu/MatildaRover/ros2_ws/logs/tests_package.log
+
+# Environment variables (if needed)
+Environment=PYTHONUNBUFFERED=1
+Environment=ROS_DOMAIN_ID=0
+
+[Install]
+WantedBy=multi-user.target

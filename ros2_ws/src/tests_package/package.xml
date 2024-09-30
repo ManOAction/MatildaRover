@@ -3,9 +3,9 @@
 <package format="3">
   <name>tests_package</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>Sample ROS2 Tests for Matilda</description>
   <maintainer email="jacobleis@gmail.com">ubuntu</maintainer>
-  <license>TODO: License declaration</license>
+  <license>Apache License 2.0</license>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>

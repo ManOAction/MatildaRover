@@ -1,10 +1,10 @@
 [Unit]
-Description=Matilda Tests Package Services
+Description=Matilda Sensors Package Services
 After=network.target
 
 [Service]
 # Specify the command to execute
-ExecStart=/usr/bin/bash -c 'source /opt/ros/jazzy/setup.bash && source /home/ubuntu/MatildaRover/ros2_ws/install/setup.bash && ros2 launch tests_package tests_package_launch.py'
+ExecStart=/usr/bin/bash -c 'source /opt/ros/jazzy/setup.bash && source /home/ubuntu/MatildaRover/ros2_ws/install/setup.bash && ros2 launch matilda_sensors matilda_sensors_launch.py'
 
 # Restart the service on failure
 Restart=on-failure
@@ -18,8 +18,8 @@ Group=ubuntu
 WorkingDirectory=/home/ubuntu/MatildaRover/ros2_ws/
 
 # Standard output and error logging
-StandardOutput=append:/home/ubuntu/ros2_ws/logs/tests_package.log
-StandardError=append:/home/ubuntu/ros2_ws/logs/tests_package.log
+StandardOutput=append:/home/ubuntu/MatildaRover/ros2_ws/logs/matilda_sensors.log
+StandardError=append:/home/ubuntu/MatildaRover/ros2_ws/logs/matilda_sensors.log
 
 # Environment variables (if needed)
 Environment=PYTHONUNBUFFERED=1

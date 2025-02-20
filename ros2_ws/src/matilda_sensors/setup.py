@@ -27,6 +27,7 @@ setup(
             "sensor_subscriber = matilda_sensors.matilda_sensor_subscriber:main",
             "matilda_sensor_server = matilda_sensors.matilda_sensor_service_server:main",
             "matilda_sensor_client = matilda_sensors.matilda_sensor_service_client:main",
+            'matilda_sensor_service_client_continuousSpin = matilda_sensors.matilda_sensor_service_client_continuousSpin:main',
         ],
     },
 )
